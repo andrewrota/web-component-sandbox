@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Components</title>
+    <script type="text/javascript">
+        var app = {};
+        app.createElement = function(tagName, templateId, basePrototype) {
+            basePrototype = basePrototype || HTMLElement.prototype;
+            var template = document.currentScript.ownerDocument.getElementById(templateId).content;
+            var customElementPrototype = Object.create(basePrototype);
+            customElementPrototype.createdCallback = function() {
+                var shadowRoot = this.createShadowRoot();
+                var clone = document.importNode(template, true);
+                shadowRoot.appendChild(clone);
+            };
+            return document.registerElement(tagName, {
+                prototype: customElementPrototype
+            });
+        };
+    </script>
+    <link rel="import" href="../dist/components/pure-button/pure-button.html">
+</head>
+
+<body>
+    <pure-button>Hello World</pure-button>
+    <pure-button disabled>Hello World (Disabled)</pure-button>
+    <pure-button class="primary">Hello World</pure-button>
+    <pure-button class="primary" disabled>Hello World (Disabled)</pure-button>
+</body>
+
+</html>
