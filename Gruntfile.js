@@ -10,7 +10,7 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    src: ['components/**/*.html'],
+                    src: ['components/**/*.html', 'components/**/*.js'],
                     dest: 'dist/',
                     cwd: 'src'
                 }]
@@ -23,9 +23,6 @@ module.exports = function(grunt) {
             }
         },
         sass: {
-            options: {
-                sourcemap: 'none'
-            },
             dist: {
                 files: [{
                     expand: true,
